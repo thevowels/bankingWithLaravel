@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('states', function (Blueprint $table) {
+        Schema::create('accounts', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique();
-            $table->string('name');
+            $table->bigInteger('accountNo')->unique();
+            $table->string('CustomerCode')->nullable();
+            $table->string('CustomerName');
+            $table->decimal('balance', 10, 2)->default(0);
+            $table->foreignId('township_id')->constrained();
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('states');
+        Schema::dropIfExists('accounts');
     }
 };
