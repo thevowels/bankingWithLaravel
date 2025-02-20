@@ -54,4 +54,13 @@ class Account extends Model
     {
         return $this->hasMany(Withdraw::class);
     }
+
+    public function fromtransactions(): HasMany
+    {
+        return $this->hasMany(Transaction::class, 'fromAccountNo', 'accountNo');
+    }
+    public function totransactions(): HasMany
+    {
+        return $this->hasMany(Transaction::class, 'toAccountNo', 'accountNo');
+    }
 }
