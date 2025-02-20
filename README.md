@@ -13,3 +13,7 @@
 ## Database Structure
 
 ## Project Description
+
+## Todos
+
+1. Create Tables
