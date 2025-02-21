@@ -21,6 +21,7 @@ class AccountFactory extends Factory
             'CustomerCode' => $this->faker->unique()->regexify('[A-Z]{3}[0-9]{3}'),
             'CustomerName' => $this->faker->unique()->name,
             'township_id'  => Township::all()->random()->id,
+            'balance' => $this->faker->randomFloat(1000000, 10000, 10000000),
         ];
     }
 }
