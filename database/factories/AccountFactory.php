@@ -4,6 +4,8 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Township;
+use App\Models\User;
+
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Account>
  */
@@ -21,6 +23,7 @@ class AccountFactory extends Factory
             'CustomerCode' => $this->faker->unique()->regexify('[A-Z]{3}[0-9]{3}'),
             'CustomerName' => $this->faker->unique()->name,
             'township_id'  => Township::all()->random()->id,
+            'user_id' => User::all()->random()->id,
             'balance' => $this->faker->numberBetween(1000000, 10000000),
         ];
     }

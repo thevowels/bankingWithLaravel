@@ -16,7 +16,7 @@ class TransactionSeeder extends Seeder
     {
         //
         DB::transaction(function () {
-            Transaction::factory()->count(300)->create();
+            Transaction::factory()->count(80)->create();
 
         });
     }
