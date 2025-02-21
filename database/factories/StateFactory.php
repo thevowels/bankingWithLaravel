@@ -18,6 +18,8 @@ class StateFactory extends Factory
     {
         return [
             //
+            'code' => $this->faker->unique()->stateAbbr,
+            'name' => $this->faker->unique()->state,
         ];
     }
 }
