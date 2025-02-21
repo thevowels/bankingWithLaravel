@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Account;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +19,8 @@ class DepositFactory extends Factory
     {
         return [
             //
+            'account_id'=> Account::all()->random()->id,
+            'amount' => $this->faker->numberBetween(1000, 100000),
         ];
     }
 }

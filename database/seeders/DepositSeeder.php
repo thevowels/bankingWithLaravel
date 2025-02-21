@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Deposit;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,5 +14,6 @@ class DepositSeeder extends Seeder
     public function run(): void
     {
         //
+        Deposit::factory()->count(100)->create();
     }
 }

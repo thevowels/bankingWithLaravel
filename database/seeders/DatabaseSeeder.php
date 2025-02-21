@@ -24,6 +24,9 @@ class DatabaseSeeder extends Seeder
             StateSeeder::class,
             TownshipSeeder::class,
             AccountSeeder::class,
+            DepositSeeder::class,
+            WithdrawSeeder::class,
+            TransactionSeeder::class,
         ]);
 
     }

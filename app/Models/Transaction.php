@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\DB;
 
 class Transaction extends Model
 {
@@ -21,10 +22,22 @@ class Transaction extends Model
         parent::boot();
 
         static::creating(function($transaction){
-            $transaction->fromAccount->balance -= $transaction->amount;
-            $transaction->fromAccount->save();
-            $transaction->toAccount->balance += $transaction->amount;
-            $transaction->toAccount->save();
+            DB::transaction(function() use ($transaction){
+                $fromAccount = Account::lockForUpdate()->find($transaction->fromAccount->id);
+                $fromAccountBalance = $fromAccount->balance;
+                if($fromAccountBalance < $transaction->amount){
+                    throw new \Exception('Insufficient balance');
+                }
+                $toAccount = Account::lockForUpdate()->find($transaction->toAccount->id);
+                $fromAccount->balance -= $transaction->amount;
+                $fromAccount->save();
+                $toAccount->balance += $transaction->amount;
+                $toAccount->save();
+            });
+            // $transaction->fromAccount->balance -= $transaction->amount;
+            // $transaction->fromAccount->save();
+            // $transaction->toAccount->balance += $transaction->amount;
+            // $transaction->toAccount->save();
         });
     }
 

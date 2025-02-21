@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Account;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,15 @@ class TransactionFactory extends Factory
      */
     public function definition(): array
     {
+        $fromAccount = Account::all()->random();
+        $fromAccountBalance = $fromAccount->balance;
+        $toAccountNo = Account::all()->except($fromAccount->id)->random()->accountNo;
+    
         return [
             //
+            'fromAccountNo' => $fromAccount->accountNo,
+            'toAccountNo' => $toAccountNo,
+            'amount' => $this->faker->numberBetween(1, $fromAccountBalance/10),
         ];
     }
 }
