@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Township;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,5 +14,6 @@ class TownshipSeeder extends Seeder
     public function run(): void
     {
         //
+        Township::factory()->count(30)->create();
     }
 }
