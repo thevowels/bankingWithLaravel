@@ -20,7 +20,7 @@ class TownshipFactory extends Factory
             //
             'code' => $this->faker->unique()->stateAbbr,
             'name' => $this->faker->unique()->city,
-            'state_id' => State::all()->random()->id,
+            'state_id' => State::all()->random()->id ,
         ];
     }
 }
