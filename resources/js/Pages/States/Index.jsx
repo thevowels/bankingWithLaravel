@@ -1,6 +1,6 @@
 import PrimaryButton from "@/Components/PrimaryButton";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { router } from "@inertiajs/react";
+import { Head, router } from "@inertiajs/react";
 export default function Index({states}){
 
     return(
@@ -12,8 +12,8 @@ export default function Index({states}){
                 </div>
             </div>
         }
-
         >
+            <Head title="States"/>
             <div className="py-12">
                 <div className="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8">
                     <div className="max-w-xl mx-auto">

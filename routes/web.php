@@ -27,6 +27,9 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('states', StateController::class)
     ->only(['index','store','create'])
-    ->middleware(['auth','verified']);
+    ->middleware(['auth','verified'])
+    ->name('states.index', 'states')
+    ->name('states.create', 'states.create')
+    ->name('states.store', 'states.store');
     
 require __DIR__.'/auth.php';
