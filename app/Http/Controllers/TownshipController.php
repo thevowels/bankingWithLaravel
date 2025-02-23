@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Township;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class TownshipController extends Controller
 {
@@ -13,6 +14,9 @@ class TownshipController extends Controller
     public function index()
     {
         //
+        return Inertia::render('Townships/Index', [
+            'townships' => Township::select('id','code','name')->get()
+        ]);
     }
 
     /**
@@ -21,6 +25,7 @@ class TownshipController extends Controller
     public function create()
     {
         //
+        return Inertia::render('Townships/Create');
     }
 
     /**

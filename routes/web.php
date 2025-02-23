@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StateController;
+use App\Http\Controllers\TownshipController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -28,8 +30,16 @@ Route::middleware('auth')->group(function () {
 Route::resource('states', StateController::class)
     ->only(['index','store','create'])
     ->middleware(['auth','verified'])
-    ->name('states.index', 'states')
-    ->name('states.create', 'states.create')
-    ->name('states.store', 'states.store');
-    
+    ->name('states.*', 'states.*');
+
+Route::resource('townships', TownshipController::class)
+    ->only(['index','create'])
+    ->middleware(['auth','verified'])
+    ->name('townships.*', 'townships.*');
+
+Route::resource('accounts', AccountController::class)
+    ->only(['index','create'])
+    ->middleware(['auth','verified'])
+    ->name('accounts.*', 'accounts.*');
+
 require __DIR__.'/auth.php';

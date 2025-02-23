@@ -4,15 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Account;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class AccountController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        return Inertia::render('Account/Index',[
+            // 'accounts' => $request->user()->accounts()->paginate(15)
+            'paginated' => Account::paginate(15)
+        ]);
     }
 
     /**
