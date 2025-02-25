@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\State;
 use App\Models\Township;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -25,7 +26,9 @@ class TownshipController extends Controller
     public function create()
     {
         //
-        return Inertia::render('Townships/Create');
+        return Inertia::render('Townships/Create',[
+            'states' => State::select('id','code','name')->get()
+        ]);
     }
 
     /**
@@ -34,6 +37,14 @@ class TownshipController extends Controller
     public function store(Request $request)
     {
         //
+        $value = $request->validate([
+            'code' => ['required', 'string', 'size:2', 'alpha:ascii', 'unique:townships,code'],
+            'name' => ['required', 'string', 'max:50'],
+            'state_id.id' => ['required', 'integer', 'exists:states,id']
+        ]);
+        $value['state_id'] = $value['state_id']['id'];
+        Township::create($value);
+        return(redirect(route('townships.index')));
     }
 
     /**

@@ -33,7 +33,7 @@ Route::resource('states', StateController::class)
     ->name('states.*', 'states.*');
 
 Route::resource('townships', TownshipController::class)
-    ->only(['index','create'])
+    ->only(['index','create','store'])
     ->middleware(['auth','verified'])
     ->name('townships.*', 'townships.*');
 
