@@ -42,17 +42,13 @@ class AccountController extends Controller
     {
         //
         $value = $request->validate([
-            'CustomerName' => ['required', 'string' , 'min:4', 'alpha'],
+            'CustomerName' => ['required', 'string' , 'min:4',],
             'township.id' => ['required', 'integer', 'exists:townships,id']
         ]);
         $value['township_id'] = $value['township']['id'];
         unset($value['township']);
-        $tmp = $request->user()->accounts()->create($value);
-        dd($tmp);
-        dd($request->user()->toArray());
-        dd(Auth::user());
-        $blah = Account::create($value);
-        dd($blah);
+        $request->user()->accounts()->create($value);
+        return(redirect(route('accounts.index')));
     }
 
     /**
