@@ -14,9 +14,10 @@ export default function Create({townships}){
         CustomerName: '',
         township: townships[0],
     })
-
+    
     const submit = (e) =>{
         e.preventDefault();
+        post(route('accounts.store'));
         console.log('submitting' , data);
     }
 

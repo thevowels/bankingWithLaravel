@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Account;
 use App\Models\Township;
 use App\Models\Transaction;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -37,9 +38,21 @@ class AccountController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, )
     {
         //
+        $value = $request->validate([
+            'CustomerName' => ['required', 'string' , 'min:4', 'alpha:ascii'],
+            'township.id' => ['required', 'integer', 'exists:townships,id']
+        ]);
+        $value['township_id'] = $value['township']['id'];
+        unset($value['township']);
+        $tmp = $request->user()->accounts()->create($value);
+        dd($tmp);
+        dd($request->user()->toArray());
+        dd(Auth::user());
+        $blah = Account::create($value);
+        dd($blah);
     }
 
     /**
