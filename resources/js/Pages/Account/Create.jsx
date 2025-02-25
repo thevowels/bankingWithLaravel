@@ -14,7 +14,7 @@ export default function Create({townships}){
         CustomerName: '',
         township: townships[0],
     })
-    
+
     const submit = (e) =>{
         e.preventDefault();
         post(route('accounts.store'));
@@ -84,13 +84,6 @@ export default function Create({townships}){
                             </div>
 
                             </form>
-                        </div>
-                    </div>
-                </div>
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 py-2">
-                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
-                        <div className="p-6 text-gray-900 dark:text-gray-100 text-center">
-                            JIOJIO
                         </div>
                     </div>
                 </div>
