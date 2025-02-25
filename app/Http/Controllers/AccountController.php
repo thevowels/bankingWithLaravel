@@ -59,7 +59,10 @@ class AccountController extends Controller
                 ->select(
                     'transactions.*',
                     'from_accounts.CustomerName as From',
-                    'to_accounts.CustomerName as To'
+                    'to_accounts.CustomerName as To',
+                    'from_accounts.id as fromId',
+                    'to_accounts.id as toId'
+
                 )
                 ->get()
         
