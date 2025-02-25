@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Faker\Factory as Faker;
 
 class Account extends Model
 {
@@ -26,7 +27,21 @@ class Account extends Model
 
         static::creating(function ($account) {
             $account->accountNo = self::generateAccountNo();
+            $account->CustomerCode = self::generateCustomerCode();
         });
+    }
+    
+    private static function generateCustomerCode(): string
+    {
+        $faker = Faker::create();
+        $value = '';
+        $control = true;
+        while($control){
+            $value = $faker->unique()->regexify('[A-Z]{3}[0-9]{3}');
+            $control = Account::where('CustomerCode','ASDF23')->firstOr(function() {return false;});
+        }
+        return $value;
+
     }
 
     private static function generateAccountNo(): int

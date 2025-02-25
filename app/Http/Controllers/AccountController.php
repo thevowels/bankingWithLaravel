@@ -42,7 +42,7 @@ class AccountController extends Controller
     {
         //
         $value = $request->validate([
-            'CustomerName' => ['required', 'string' , 'min:4', 'alpha:ascii'],
+            'CustomerName' => ['required', 'string' , 'min:4', 'alpha'],
             'township.id' => ['required', 'integer', 'exists:townships,id']
         ]);
         $value['township_id'] = $value['township']['id'];
