@@ -1,4 +1,5 @@
 import PrimaryButton from "@/Components/PrimaryButton";
+import SecondaryButton from "@/Components/SecondaryButton";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, router } from "@inertiajs/react";
 import dayjs from "dayjs";
@@ -12,12 +13,24 @@ export default function Show({account, state, township, deposits, withdraws, tra
                     <div >
                         Customer Detail
                     </div>
+                    <div className="flex col justify-between gap-8">
+                        <PrimaryButton>
+                            Deposit
+                        </PrimaryButton>
+                        <PrimaryButton>
+                            Withdraw
+                        </PrimaryButton>
+                        <PrimaryButton>
+                            Send Money
+                        </PrimaryButton>
+
+                    </div>
                     <div >
-                        <PrimaryButton 
+                        <SecondaryButton 
                             onClick = {()=>window.history.back()}
                         >
                             Back
-                        </PrimaryButton>
+                        </SecondaryButton>
                     </div>
                 </div>
 

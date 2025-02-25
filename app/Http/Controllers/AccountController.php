@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Account;
+use App\Models\Township;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -28,6 +29,9 @@ class AccountController extends Controller
     public function create()
     {
         //
+        return Inertia::render('Account/Create',[
+            'townships'=> Township::select('id','code','name')->get()
+        ]);
     }
 
     /**

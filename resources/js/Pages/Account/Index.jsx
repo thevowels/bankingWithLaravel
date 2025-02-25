@@ -2,6 +2,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, router } from "@inertiajs/react";
 
 import { MagnifyingGlassCircleIcon } from "@heroicons/react/20/solid";
+import PrimaryButton from "@/Components/PrimaryButton";
 export default function Index({paginated}){
 
     const accounts = paginated.data;
@@ -10,9 +11,18 @@ export default function Index({paginated}){
     return(
         <AuthenticatedLayout
         header={
-            <div className="text-xl font-semibold leading-tight text-green-800 flex justify-between">
-                <div>
+            <div className=" flex justify-between">
+                <div className="text-xl font-semibold leading-tight text-green-800">
                     Accounts
+                </div>
+                <div>
+                    <PrimaryButton className="py-4 text-2xl font-bold"
+                                onClick={() => {
+                                    router.visit('/accounts/create');
+                                }}
+                    >
+                        Add New Account
+                    </PrimaryButton>
                 </div>
             </div>
         }
