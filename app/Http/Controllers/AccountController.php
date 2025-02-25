@@ -41,7 +41,13 @@ class AccountController extends Controller
      */
     public function show(Account $account)
     {
-        //
+        return Inertia::render('Account/Show', [
+            'account' => $account,
+            'township' => $account->township,
+            'state' => $account->township->state,
+            
+
+        ]);
     }
 
     /**

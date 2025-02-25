@@ -1,5 +1,7 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, router } from "@inertiajs/react";
+
+import { MagnifyingGlassCircleIcon } from "@heroicons/react/20/solid";
 export default function Index({paginated}){
 
     const accounts = paginated.data;
@@ -21,20 +23,24 @@ export default function Index({paginated}){
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
                         <div className="p-6 text-gray-900 dark:text-gray-100 text-center">
                         
-                        <table className="table-auto w-full">
+                        <table className="table-auto w-full text-xs" >
                             <thead>
                                 <tr>
                                     <th>Name</th>
                                     <th>Account No</th>
                                     <th>Balance</th>
+                                    <th>Detail</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody >
                                 {accounts.map((account) => (
                                     <tr key={account.id} className="border-b border-gray-200 ">
                                         <td className="px-3 py-2 whitespace-nowrap">{account.CustomerName}</td>
                                         <td className="px-3 py-2 whitespace-nowrap">{account.accountNo}</td>
                                         <td className="px-3 py-2 whitespace-nowrap">{account.balance}</td>
+                                        <td>
+                                            <button onClick={() => router.visit(`/accounts/${account.id}`)} className="bg-green-500 text-white rounded"><MagnifyingGlassCircleIcon width={18}/></button>
+                                        </td>
                                     </tr>
                                 ))}
 

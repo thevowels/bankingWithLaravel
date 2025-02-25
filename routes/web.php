@@ -38,7 +38,7 @@ Route::resource('townships', TownshipController::class)
     ->name('townships.*', 'townships.*');
 
 Route::resource('accounts', AccountController::class)
-    ->only(['index','create'])
+    ->only(['index','create', 'show'])
     ->middleware(['auth','verified'])
     ->name('accounts.*', 'accounts.*');
 
