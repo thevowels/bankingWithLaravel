@@ -19,7 +19,6 @@ class AccountController extends Controller
     {
         //
         return Inertia::render('Account/Index',[
-            // 'accounts' => $request->user()->accounts()->paginate(15)
             'paginated' => Account::paginate(15)
         ]);
     }

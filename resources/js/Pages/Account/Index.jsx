@@ -63,15 +63,15 @@ export default function Index({paginated}){
                                         {link.url ? (
                                         <button
                                             onClick={() => router.visit(link.url)}
-                                            className={`inline-flex items-center justify-center border align-middle select-none font-sans font-medium text-center transition-all duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed focus:shadow-none text-sm rounded-md py-2 px-4 bg-transparent border-transparent  ${
-                                            link.active ? 'bg-gray-700 text-white' : 'bg-white text-gray-900'
+                                            className={`inline-flex items-center justify-center border align-middle select-none font-sans font-medium text-center transition-all duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed focus:shadow-none text-sm rounded-md py-2 px-4 border-transparent  ${
+                                            link.active ? 'bg-gray-800 text-white' : 'bg-blue text-gray-900'
                                             } hover:bg-gray-900 hover:text-white transition`}
                                             // Render the label as HTML (to display entities like « correctly)
                                             dangerouslySetInnerHTML={{ __html: link.label }}
                                         />
                                         ) : (
                                         <span
-                                            className="inline-flex items-center justify-center border align-middle select-none font-sans font-medium text-center transition-all duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed focus:shadow-none text-sm rounded-md py-2 px-4 bg-transparent border-transparent "
+                                            className="inline-flex items-center justify-center border align-middle select-none font-sans font-medium text-center transition-all duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed focus:shadow-none text-sm rounded-md py-2 px-4"
                                             dangerouslySetInnerHTML={{ __html: link.label }}
                                         />
                                         )}
