@@ -82,7 +82,6 @@ export default function Create({townships}){
                                     Submit
                                 </PrimaryButton>
                             </div>
-
                             </form>
                         </div>
                     </div>

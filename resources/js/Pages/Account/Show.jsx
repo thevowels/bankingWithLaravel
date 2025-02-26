@@ -14,7 +14,9 @@ export default function Show({account, state, township, deposits, withdraws, tra
                         Customer Detail
                     </div>
                     <div className="flex col justify-between gap-8">
-                        <PrimaryButton>
+                        <PrimaryButton
+                            onClick={()=>router.visit(`/accounts/${account.id}/deposits/create`)}
+                        >
                             Deposit
                         </PrimaryButton>
                         <PrimaryButton>

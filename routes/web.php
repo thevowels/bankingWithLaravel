@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\DepositController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\TownshipController;
+use App\Models\Deposit;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -41,5 +43,15 @@ Route::resource('accounts', AccountController::class)
     ->only(['index','create', 'show','store'])
     ->middleware(['auth','verified'])
     ->name('accounts.*', 'accounts.*');
+
+Route::resource('accounts.deposits', DepositController::class)
+->only(['store','create'])
+->middleware(['auth'])
+->name('accounts.deposits.*', 'accounts.deposits.*');
+
+Route::resource('deposits', DepositController::class)
+->only(['index'])
+->middleware(['auth','verified'])
+->name('deposits.*','deposits.*');
 
 require __DIR__.'/auth.php';

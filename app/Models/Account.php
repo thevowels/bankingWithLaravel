@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Faker\Factory as Faker;
+use Illuminate\Support\Facades\DB;
 
 class Account extends Model
 {
@@ -54,7 +56,20 @@ class Account extends Model
             return 40000001;
         }
     }
-
+    //to use later
+    // public function deposit(int $amount){
+    //     if( $amount <= 0){
+    //         throw new Exception("Deposit must be greater than 0.");
+    //     }
+    
+    //     DB::transaction(function () use ($amount) {
+    //         $this->lockForUpdate()->increment('balance', $amount);
+    //         Deposit::create([
+    //             'account_id'=>$this->id,
+    //             'amount' => $amount
+    //         ]);
+    //     });
+    // }
     public function township(): BelongsTo
     {
         return $this->belongsTo(Township::class);

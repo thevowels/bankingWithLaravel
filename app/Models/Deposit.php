@@ -24,7 +24,6 @@ class Deposit extends Model
             $deposit->account->save();
         });
     }
-
     public function account(): BelongsTo
     {
         return $this->belongsTo(Account::class);
