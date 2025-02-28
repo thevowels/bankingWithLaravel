@@ -19,7 +19,7 @@ class AccountController extends Controller
     {
         //
         return Inertia::render('Account/Index',[
-            'paginated' => Account::paginate(15)
+            'paginated' => Account::orderBy('id')->paginate(15)
         ]);
     }
 

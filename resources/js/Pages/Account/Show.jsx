@@ -3,9 +3,12 @@ import SecondaryButton from "@/Components/SecondaryButton";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, router } from "@inertiajs/react";
 import dayjs from "dayjs";
+import { useState } from "react";
+import Withdraw from "./Partials/Withdraw";
 export default function Show({account, state, township, deposits, withdraws, transactions}){
     console.log(account);
     console.log(transactions);
+    const [withdraw, setWithdraw ] = useState(false);
     return(
         <AuthenticatedLayout
             header={
@@ -19,7 +22,9 @@ export default function Show({account, state, township, deposits, withdraws, tra
                         >
                             Deposit
                         </PrimaryButton>
-                        <PrimaryButton>
+                        <PrimaryButton
+                            onClick = {() => setWithdraw(!withdraw)}
+                        >
                             Withdraw
                         </PrimaryButton>
                         <PrimaryButton>
@@ -62,6 +67,7 @@ export default function Show({account, state, township, deposits, withdraws, tra
                         </div>
                     </div>
 
+
                     <div className="overflow-hidden mx-auto max-w-xs bg-white shadow-sm sm:rounded-lg dark:bg-gray-800 mt-4">
                         <div className="p-6 text-gray-900 dark:text-gray-100 text-center">
                             Balance
@@ -70,6 +76,17 @@ export default function Show({account, state, township, deposits, withdraws, tra
                             </p>                            
                         </div>
                     </div>
+                    {
+                        withdraw 
+                        ||
+                         <div className="overflow-hidden mx-auto max-w-xl bg-white shadow-sm sm:rounded-lg dark:bg-gray-800 mt-4">
+                            <div className="p-6 text-gray-900 dark:text-gray-100 text-center">
+                                <Withdraw/>
+                            </div>
+                        </div>
+
+                    }
+
 
                     <div className="overflow-hidden max-w-xl mx-auto bg-white shadow-sm sm:rounded-lg dark:bg-gray-800 mt-4">
                         <div className="max-w-lg mx-auto p-6 text-gray-900 dark:text-gray-100 text-center">
