@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Account;
 use App\Models\Withdraw;
 use Illuminate\Http\Request;
 
@@ -26,9 +27,15 @@ class WithdrawController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Account $account)
     {
         //
+        $value = $request->validate([
+            'amount' => ['required', 'integer']
+        ]);
+        // dd($request->account);
+        $account->withdraw($value['amount']);
+        return(redirect(route('accounts.show', $account)));
     }
 
     /**

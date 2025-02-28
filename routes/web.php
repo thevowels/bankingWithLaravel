@@ -5,6 +5,7 @@ use App\Http\Controllers\DepositController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\TownshipController;
+use App\Http\Controllers\WithdrawController;
 use App\Models\Deposit;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -53,5 +54,12 @@ Route::resource('deposits', DepositController::class)
 ->only(['index'])
 ->middleware(['auth','verified'])
 ->name('deposits.*','deposits.*');
+
+Route::resource('accounts.withdraws', WithdrawController::class)
+->only(['store'])
+->middleware(['auth'])
+->name('accounts.withdraws.*', 'accounts.withdraws.*');
+
+
 
 require __DIR__.'/auth.php';

@@ -70,6 +70,24 @@ class Account extends Model
     //         ]);
     //     });
     // }
+
+    public function withdraw(int $amount){
+        if( $amount <= 0) {
+            throw new Exception("Withdraws must be greater than 0.");
+        }else if( $amount >= $this->balance ){
+            throw new Exception("You don't have enough balance");
+        }
+        DB::transaction(function () use ($amount) {
+            $account = Account::where('id', $this->id)->lockForUpdate()->first();
+            $account->decrement('balance', $amount);
+            
+            Withdraw::create([
+                'account_id' => $this->id, 
+                'amount' => $amount
+            ]);
+        });
+    }
+
     public function township(): BelongsTo
     {
         return $this->belongsTo(Township::class);
