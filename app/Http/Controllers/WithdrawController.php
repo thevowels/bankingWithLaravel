@@ -35,7 +35,8 @@ class WithdrawController extends Controller
         ]);
         // dd($request->account);
         $account->withdraw($value['amount']);
-        return(redirect(route('accounts.show', $account)));
+
+        return redirect(route('accounts.show', $account));
     }
 
     /**
